@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<head>
+    <title>My App</title>
+    <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="app.css">
+
+</head>
+<body ng-app="myApp" ng-controller="myAppCtrl">
+<div class="container" ng-init="initApp()">
+    <div class="row">
+        <div class="col-sm-4">
+        </div>
+        <div class="col-sm-4">
+            <h3>Popcorn Time</h3>
+        </div>
+        <div class="col-sm-4">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-2">
+            <span>Name: </span><input type="text" ng-model="user.name">
+        </div>
+        <div class="col-sm-2">
+            <span>No Of Seats </span><input type="number" min="1" max="120" ng-model="user.noOfSeats">
+        </div>
+        <div class="col-sm-2" style="padding-top: 15px">
+            <input type="button" class="btn btn-primary" ng-click="startSelecting()" value="Start Selecting">
+        </div>
+        <div class="col-sm-3"></div>
+    </div>
+
+    <hr>
+    <br>
+    <div class="row" ng-show="showSeatSelectionDiv">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-6">
+            <div class="seatNum" disabled="disabled">
+                <span ng-repeat="col in noOfColumn" style="padding-left: 29px">{{col}}</span>
+                <br>
+                <span ng-repeat="r in noOfRow track by $index">
+                    <span style="padding-right: 5px">{{r}}</span>
+                     <span ng-repeat="c in noOfColumn track by $index">
+                        <input type="button" class="btn ng-binding" id="{{r+c}}"
+                               ng-click="selectSeat(r+c)">
+                </span><br>
+
+
+                </span>
+            </div>
+        </div>
+        <div class="col-sm-3"></div>
+    </div>
+
+
+    <div class="row" style="padding-top: 15px">
+        <div class="col-sm-5"></div>
+        <div class="col-sm-2">
+            <input type="button" class="btn btn-primary" ng-click="confirmBooking()" value="Confirm Booking">
+        </div>
+        <div class="col-sm-5"></div>
+    </div>
+
+    <div class="row" style="padding-top: 15px">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-6">
+            <h3>Booked history</h3>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Seat Count</th>
+                    <th>Seat Details</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="user in userBookedHistory track by $index">
+                    <td>{{user.name}}</td>
+                    <td>{{user.noOfSeats}}</td>
+                    <td>{{user.selectedSeats.join(',')}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="col-sm-3"></div>
+    </div>
+</div>
+
+
+<script src="../bower_components/jquery/dist/jquery.min.js"></script>
+<script src="../bower_components/angular/angular.js"></script>
+<script src="../bower_components/angular-local-storage/dist/angular-local-storage.min.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

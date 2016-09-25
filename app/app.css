@@ -1,0 +1,5 @@
+.seatNum{margin-left:-2px; margin-right:-2px}
+.seatNum .btn{border-radius:1px; width:30px; height: 30px; text-align:center; border:2px solid #ddd; color:#666; font-weight: bold;padding:0; line-height:26px; margin:3px 2px}
+.seatNum .btn:focus{color:#1bb0b3;}
+
+.seatNum .btn.active{border-color:#1bb0b3; background:#1bb0b3; color:#fff; box-shadow:none !important;}
